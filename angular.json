@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "amp-admin": {
+    "byrd-assignment": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/amp-admin",
+            "outputPath": "dist/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "amp-admin:build"
+            "browserTarget": "byrd-assignment:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "amp-admin:build:production"
+              "browserTarget": "byrd-assignment:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "amp-admin:build"
+            "browserTarget": "byrd-assignment:build"
           }
         },
         "test": {
@@ -112,7 +112,7 @@
         }
       }
     },
-    "amp-admin-e2e": {
+    "byrd-assignment-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -121,11 +121,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "amp-admin:serve"
+            "devServerTarget": "byrd-assignment:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "amp-admin:serve:production"
+              "devServerTarget": "byrd-assignment:serve:production"
             }
           }
         },
@@ -141,5 +141,5 @@
       }
     }
   },
-  "defaultProject": "amp-admin"
+  "defaultProject": "byrd-assignment"
 }
