@@ -34,7 +34,8 @@ export class FormComponent implements OnInit, AfterViewInit {
     private store: Store,
     private commonService: CommonService,
     private toastr: ToastrService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private elem: ElementRef
   ) { }
 
   onSelectBlur(name) {
@@ -104,8 +105,10 @@ export class FormComponent implements OnInit, AfterViewInit {
   reset() {
     localStorage.clear();
     this.searchForm.reset();
-    const flatPickrMobile = this.renderer.selectRootElement('.flatpickr-mobile');
-    this.renderer.setProperty(flatPickrMobile, 'value', '');
+    const elements = this.elem.nativeElement.querySelectorAll('.flatpickr-mobile');
+    elements.forEach(element => {
+      this.renderer.setProperty(element, 'value', '');
+    });
     this.store.dispatch(new ResetInvoice());
   }
 }
