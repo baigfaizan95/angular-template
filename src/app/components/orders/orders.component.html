@@ -1,0 +1,19 @@
+<div *ngIf="invoiceData | async; else noData" class="invoice">
+  <h2>Invoice</h2>
+  <hr />
+  <div class="card invoice__item"  *ngFor="let order of invoiceData | async" (click)="getInvoice(order)">
+    <div class="row no-gutters ">
+      <div class="col">
+        <strong>{{ order.id }}</strong>
+      </div>
+      <div class="col text-secondary">{{ order.recipient.name }}</div>
+      <div class="col-4 text-secondary">{{ order.recipient.email }}</div>
+      <div class="col-3 text-secondary">{{ order.created_at | date : 'short' }}</div>
+      <div class="col-1">{{ order.charge_customer.total_price | currency : order.charge_customer.currency }}</div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noData>
+  <img src="assets/images/no_data.gif">
+</ng-template>

@@ -1,0 +1,17 @@
+@import "common/index";
+
+.app {
+  height: 100vh;
+  display: flex;
+  &__sidebar {
+    width: 20%;
+  }
+  &__form {
+    width: 53%;
+    padding: 2rem;
+  }
+  &__invoice {
+    width: 27%;
+    background-color: lighten($black, 60%);
+  }
+}

@@ -1,0 +1,14 @@
+@import 'common/index';  
+
+.invoice {
+  margin-top: 3rem;
+  &__item {
+    padding: 1rem;
+    margin: 1rem;
+    cursor: pointer;
+    box-shadow: $box-shadow-sm;
+    &:hover{
+      color: $primary;
+    }
+  }
+}

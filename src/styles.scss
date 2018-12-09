@@ -1,0 +1,11 @@
+@import "./assets/scss/master.scss";
+
+@import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+
+body {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  background: white;
+}

@@ -1,0 +1,43 @@
+<div class="invoice" *ngIf="invoice">
+  <div id="invoiceView">
+    <div class="invoice__details">
+      <h3 class="text-primary text-center invoice__id">{{ invoice.id }}</h3>
+      <div  class="row no-gutters align-items-end" [class.mg-bt]="invoice">
+        <div class="col">
+          <p><strong>Name:</strong> {{ invoice.recipient.name }}</p>
+          <p><strong>Email:</strong> {{ invoice.recipient.email }}</p>
+          <p><strong>Date:</strong> {{ invoice.created_at | date: "short" }}</p>
+        </div>
+        <div class="col-4 text-right">
+            <p><strong>Charged:</strong> {{ invoice.charge_customer.total_price   | currency: invoice.charge_customer.currency}}</p>
+          </div>
+      </div>
+
+      <div class="invoice__items p-3 mg-bt" *ngFor="let item of invoice.items">
+        <div class="row no-gutters">
+          <div class="col-2">
+            <strong> {{ item.id }} </strong>
+          </div>
+          <div class="col-7">{{ item.name }}</div>
+          <div class="col-1">{{ item.quantity }}</div>
+          <div class="col-1">
+            {{ item.total_price.amount | currency: item.total_price.currency }}
+          </div>
+        </div>
+      </div>
+      <div class="text-right mt-2">
+        Total:{{  getTotalPrice(invoice.items)    | currency: invoice.charge_customer.currency}}
+        <br />
+      </div>
+    </div>
+    <div class="invoice__other-details">
+      <p><strong>Delivery Details:</strong> </p>
+      <p>
+        <span class="text-secondary"> Courier</span> {{ invoice.delivery.courier }}
+      </p>   
+      <p>
+        <span class="text-secondary"> Method</span> {{ invoice.delivery.method }}
+      </p>
+    </div>
+  </div>
+</div>
