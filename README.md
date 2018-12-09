@@ -1,7 +1,8 @@
 # Byrd Assignment
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.2.
-**URL: ** https://baigfaizan95.github.io/byrd-assignment/
+
+**URL:** https://baigfaizan95.github.io/byrd-assignment/
 
 ## Tools / 3rd Party Components Used
 
