@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Renderer2 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CustomerObj } from '../../objects/customer';
 import { CommonService } from 'src/app/services/common.service';
@@ -15,13 +15,13 @@ import { ToastrService } from 'ngx-toastr';
 export class FormComponent implements OnInit, AfterViewInit {
 
   customerIdLocal = localStorage.getItem('customerId');
-  startDateLocal: string;
-  endDateLocal: string;
+  startDateLocal = localStorage.getItem('startDate');
+  endDateLocal = localStorage.getItem('endDate');
 
   searchForm = this.fb.group({
     customerId: [this.customerIdLocal, [Validators.required]],
-    startDate: [localStorage.getItem('startDate')],
-    endDate: [localStorage.getItem('endDate')]
+    startDate: [this.startDateLocal],
+    endDate: [this.endDateLocal]
   });
 
   customerList: Array<CustomerObj> = [];
@@ -33,7 +33,8 @@ export class FormComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private store: Store,
     private commonService: CommonService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private renderer: Renderer2
   ) { }
 
   onSelectBlur(name) {
@@ -63,7 +64,7 @@ export class FormComponent implements OnInit, AfterViewInit {
     flatpickr(this.endDate.nativeElement, {
       onChange: function(_, dateStr) {
         localStorage.setItem('endDate', dateStr);
-    }
+      }
     });
   }
 
@@ -103,6 +104,10 @@ export class FormComponent implements OnInit, AfterViewInit {
   reset() {
     localStorage.clear();
     this.searchForm.reset();
+    const startDate = this.renderer.selectRootElement('.flatpickr-mobile');
+    const endDate = this.renderer.selectRootElement('.flatpickr-mobile');
+    this.renderer.setProperty(startDate, 'value', '');
+    this.renderer.setProperty(endDate, 'value', '');
     this.store.dispatch(new ResetInvoice());
   }
 }
