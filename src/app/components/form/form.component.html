@@ -1,16 +1,16 @@
 <div class="form">
-  <form class="form__wrapper row" [formGroup]="searchForm">
-    <div class="col">
-      <ng-select (blur)="onSelectBlur('customerId')" formControlName="customerId" placeholder="Customer">
+  <form class="form__wrapper" [formGroup]="searchForm">
+    <div class="form__search">
+      <ng-select (change)="onSelectBlur('customerId')" formControlName="customerId" placeholder="Customer">
         <ng-option *ngFor="let cust of customerList" [value]="cust">{{
           cust.name
         }}</ng-option>
       </ng-select>
     </div>
-    <div class="col">
+    <div>
       <input
         name="startDate"
-        (blur)="onBlurMethod($event)"
+        (change)="onBlurMethod($event)"
         placeholder="Start Date.."
         type="text"
         #startDate
@@ -18,10 +18,10 @@
         formControlName="startDate"
       />
     </div>
-    <div class="col">
+    <div>
       <input
         name="endDate"
-        (blur)="onBlurMethod($event)"
+        (change)="onBlurMethod($event)"
         placeholder="End Date.."
         type="text"
         #endDate
@@ -29,10 +29,9 @@
         formControlName="endDate"
       />
     </div>
-    <div class="w-100 text-center d-flex">
+  </form>
+  <div class="w-100 text-center d-flex form__btn-wrapper">
       <button (click)="search()" class="mat-btn"><span>Search</span></button>
       <button (click)="reset()" class="mat-btn mat-btn__red"><span>Reset</span></button>
     </div>
-    <div></div>
-  </form>
 </div>

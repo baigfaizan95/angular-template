@@ -1,42 +1,66 @@
-<div class="invoice" *ngIf="invoice">
-  <div id="invoiceView">
+<div class="invoice container" *ngIf="invoice">
+  <div>
     <div class="invoice__details">
       <h3 class="text-primary text-center invoice__id">{{ invoice.id }}</h3>
-      <div  class="row no-gutters align-items-end" [class.mg-bt]="invoice">
-        <div class="col">
+      <div class="invoice__header-wrapper">
+        <div class="invoice__header-basic">
           <p><strong>Name:</strong> {{ invoice.recipient.name }}</p>
           <p><strong>Email:</strong> {{ invoice.recipient.email }}</p>
           <p><strong>Date:</strong> {{ invoice.created_at | date: "short" }}</p>
         </div>
-        <div class="col-4 text-right">
-            <p><strong>Charged:</strong> {{ invoice.charge_customer.total_price   | currency: invoice.charge_customer.currency}}</p>
-          </div>
-      </div>
-
-      <div class="invoice__items p-3 mg-bt" *ngFor="let item of invoice.items">
-        <div class="row no-gutters">
-          <div class="col-2">
-            <strong> {{ item.id }} </strong>
-          </div>
-          <div class="col-7">{{ item.name }}</div>
-          <div class="col-1">{{ item.quantity }}</div>
-          <div class="col-1">
-            {{ item.total_price.amount | currency: item.total_price.currency }}
-          </div>
+        <div class="invoice__header-total">
+          <p>
+            <strong>Charged:</strong>
+            {{
+              invoice.charge_customer.total_price
+                | currency: invoice.charge_customer.currency
+            }}
+          </p>
         </div>
       </div>
-      <div class="text-right mt-2">
-        Total:{{  getTotalPrice(invoice.items)    | currency: invoice.charge_customer.currency}}
+      <div class="table-responsive">
+        <table class="invoice__table">
+          <thead class="invoice__table-head">
+            <tr>
+              <th style="min-width: 100px"><strong>Id</strong></th>
+              <th style="min-width: 150px"><strong>Name</strong></th>
+              <th style="min-width: 50px"><strong>Qty</strong></th>
+              <th style="width: 100px" class="text-right">
+                <strong>Amount</strong>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="invoice__table-body">
+            <tr *ngFor="let item of invoice.items">
+              <td>{{ item.id }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.quantity }}</td>
+              <td class="text-right">
+                {{
+                  item.total_price.amount | currency: item.total_price.currency
+                }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="invoice__total">
+        Total:{{
+          getTotalPrice(invoice.items)
+            | currency: invoice.charge_customer.currency
+        }}
         <br />
       </div>
     </div>
     <div class="invoice__other-details">
-      <p><strong>Delivery Details:</strong> </p>
+      <p><strong>Delivery Details:</strong></p>
       <p>
-        <span class="text-secondary"> Courier</span> {{ invoice.delivery.courier }}
-      </p>   
+        <span class="text-secondary"> Courier</span>
+        {{ invoice.delivery.courier }}
+      </p>
       <p>
-        <span class="text-secondary"> Method</span> {{ invoice.delivery.method }}
+        <span class="text-secondary"> Method</span>
+        {{ invoice.delivery.method }}
       </p>
     </div>
   </div>

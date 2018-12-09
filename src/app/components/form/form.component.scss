@@ -1,3 +1,28 @@
-.form__wrapper {
-  align-items: center;
+.form {
+  &__wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    div {
+      width: 30%;
+    }
+  }
+  &__btn-wrapper {
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .form {
+    &__wrapper {
+      flex-direction: column;
+      div {
+        width: 100%;
+        margin-bottom: 15px;
+      }
+    }
+    &__btn-wrapper {
+      margin-top: 10px;
+    }
+  }
 }

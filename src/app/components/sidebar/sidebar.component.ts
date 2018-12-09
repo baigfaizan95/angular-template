@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   total: number;
   orders: number;
   currency: string;
@@ -21,8 +21,8 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.invoiceData$.subscribe((value) => {
-      this.startDate = localStorage.getItem('startDate') ? new Date(localStorage.getItem('startDate')) : null;
-      this.endDate = localStorage.getItem('endDate') ? new Date(localStorage.getItem('endDate')) : null;
+      this.startDate = localStorage.getItem('startDate') ? new Date(localStorage.getItem('startDate')).toLocaleDateString() : null;
+      this.endDate = localStorage.getItem('endDate') ? new Date(localStorage.getItem('endDate')).toLocaleDateString() : null;
       if (value) {
         let total = 0;
         let orders = 0;

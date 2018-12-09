@@ -3,9 +3,9 @@
   <div *ngIf="total" class="invoice">
     <h2 class="text-primary text-center invoice__header">Details</h2>
     <div>
-    <p *ngIf="startDate; else noStart"><strong>Start Date: </strong>{{ startDate | date: "short"}}</p>
+    <p *ngIf="startDate; else noStart"><strong>Start Date: </strong>{{ startDate}}</p>
     <ng-template #noStart><p><strong>Start Date: </strong>N/A</p></ng-template>
-    <p *ngIf="endDate; else noEnd"><strong>End Date: </strong>{{ endDate | date: "short"}}</p>
+    <p *ngIf="endDate; else noEnd"><strong>End Date: </strong>{{ endDate}}</p>
     <ng-template #noEnd><p><strong>End Date: </strong>N/A</p></ng-template>
     <p><strong>Total Amount: </strong>{{ total | currency: currency }}</p>
     <p><strong>Total Orders: </strong>{{ orders }}</p>

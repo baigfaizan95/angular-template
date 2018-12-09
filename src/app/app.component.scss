@@ -1,17 +1,33 @@
 @import "common/index";
 
 .app {
-  height: 100vh;
   display: flex;
+  min-height: 100vh;
   &__sidebar {
     width: 20%;
   }
   &__form {
-    width: 53%;
+    width: 80%;
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
   }
   &__invoice {
-    width: 27%;
     background-color: lighten($black, 60%);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .app {
+    flex-direction: column;
+    &__sidebar {
+      width: 100%;
+    }
+    &__form {
+      width: 100%;
+    }
+    &__invoice {
+      width: 100%;
+    }
   }
 }

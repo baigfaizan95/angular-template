@@ -5,6 +5,7 @@ import { CommonService } from 'src/app/services/common.service';
 import flatpickr from 'flatpickr';
 import { AddInvoice, ResetInvoice } from '../../actions/invoice.actions';
 import { Store } from '@ngxs/store';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-form',
@@ -14,8 +15,8 @@ import { Store } from '@ngxs/store';
 export class FormComponent implements OnInit, AfterViewInit {
 
   customerIdLocal = localStorage.getItem('customerId');
-  startDateLocal = localStorage.getItem('startDate');
-  endDateLocal = localStorage.getItem('endDate');
+  startDateLocal: Date;
+  endDateLocal: Date;
 
   searchForm = this.fb.group({
     customerId: [this.customerIdLocal, [Validators.required]],
@@ -31,16 +32,26 @@ export class FormComponent implements OnInit, AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private store: Store,
-    private commonService: CommonService
-  ) {}
+    private commonService: CommonService,
+    private toastr: ToastrService
+  ) {
+    this.startDateLocal = localStorage.getItem('startDate') ? new Date(localStorage.getItem('startDate')) : null;
+    this.endDateLocal = localStorage.getItem('endDate') ? new Date(localStorage.getItem('endDate')) : null;
+  }
 
   onBlurMethod(event) {
     const name = event.target.name;
-    localStorage.setItem(name, this.getData(name));
+    const data = this.getData(name);
+    if (data) {
+      localStorage.setItem(name, this.getData(name));
+    }
   }
 
   onSelectBlur(name) {
-    localStorage.setItem(name, this.getData(name).id);
+    const data = this.getData(name);
+    if (data) {
+      localStorage.setItem(name, this.getData(name).id);
+    }
   }
 
   ngOnInit() {
@@ -70,10 +81,28 @@ export class FormComponent implements OnInit, AfterViewInit {
         startDate: this.getData('startDate'),
         endDate: this.getData('endDate')
       };
-      this.store.dispatch(new AddInvoice({...details}));
+      if (details.startDate && details.endDate) {
+        if (details.startDate > details.endDate) {
+          this.showError('Start Date should be less than End Date');
+        } else {
+          this.callApi(details);
+        }
+      } else {
+        this.callApi(details);
+      }
     } else {
-      alert('Enter Customer');
+      this.showError('Please select Customer');
     }
+  }
+
+  callApi(details) {
+    this.store.dispatch(new AddInvoice({...details}));
+  }
+
+  showError(message: string) {
+    this.toastr.error(message, 'Form Error!', {
+      positionClass: 'toast-bottom-center'
+    });
   }
 
   reset() {

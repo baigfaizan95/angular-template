@@ -3,6 +3,12 @@
 .invoice {
   padding: 1rem;
   color: $white;
+  &__total {
+    text-align: right;
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px solid white;
+  }
   &__details {
     margin-top: 1rem;
   }
@@ -18,5 +24,35 @@
   &__items {
     padding-bottom: 0.5rem;
     border-bottom: 1px solid $white;
+  }
+  &__table {
+    width: 100%;
+    &-head {
+      border-bottom: 1px solid white;
+      tr{
+        line-height: 30px;
+      }
+    }
+    &-body{
+      &:before {
+        content: '';
+        display: table-row;
+        height: 10px;
+      }
+      tr {
+        line-height: 30px;
+      }
+    }
+  }
+  &__header {
+    &-wrapper {
+      display: flex;
+    }
+    &-basic {
+      flex: 1;
+    }
+    &-total {
+      align-self: flex-end;
+    }
   }
 }

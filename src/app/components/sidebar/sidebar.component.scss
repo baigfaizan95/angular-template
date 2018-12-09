@@ -32,3 +32,21 @@
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .sidebar {
+    text-align: center;
+    img {
+      height: 120px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-bottom: 20px;
+    }
+    .invoice {
+      div {
+        padding: 30px 0px;
+      }
+      padding-top: 15px;
+    }
+  }
+}

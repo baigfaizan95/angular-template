@@ -1,19 +1,25 @@
-<div *ngIf="invoiceData | async; else noData" class="invoice">
-  <h2>Invoice</h2>
+<div *ngIf="(invoiceData | async); else: noData" class="invoice">
+  <h2 class="text-center">Orders</h2>
   <hr />
-  <div class="card invoice__item"  *ngFor="let order of invoiceData | async" (click)="getInvoice(order)">
-    <div class="row no-gutters ">
-      <div class="col">
+  <div class="card invoice__wrapper" *ngFor="let order of (invoiceData | async)" (click)="getInvoice(order)">
+    <div class="invoice__item">
+      <div class="">
         <strong>{{ order.id }}</strong>
       </div>
-      <div class="col text-secondary">{{ order.recipient.name }}</div>
-      <div class="col-4 text-secondary">{{ order.recipient.email }}</div>
-      <div class="col-3 text-secondary">{{ order.created_at | date : 'short' }}</div>
-      <div class="col-1">{{ order.charge_customer.total_price | currency : order.charge_customer.currency }}</div>
+      <div class="text-secondary">{{ order.recipient.name }}</div>
+      <div class="text-secondary">
+        {{ order.created_at | date: "short" }}
+      </div>
+      <div>
+        {{
+          order.charge_customer.total_price
+            | currency: order.charge_customer.currency
+        }}
+      </div>
     </div>
   </div>
 </div>
 
 <ng-template #noData>
-  <img src="assets/images/no_data.gif">
+  <div class="no-data__wrapper"><img src="assets/images/no_data.gif" /></div>
 </ng-template>

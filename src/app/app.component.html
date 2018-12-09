@@ -1,14 +1,10 @@
 <div class="app">
-  <div class="app__sidebar ">
-    <app-sidebar></app-sidebar>
-  </div>
+  <div class="app__sidebar "><app-sidebar></app-sidebar></div>
   <div class="app__form">
-    <app-form></app-form>
-    <div>
+    <div style="flex: 1">
+      <app-form></app-form>
       <app-orders></app-orders>
     </div>
-  </div>
-  <div class="app__invoice">
-    <app-single-order></app-single-order>
+    <div class="app__invoice"><app-single-order></app-single-order></div>
   </div>
 </div>

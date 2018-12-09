@@ -10,6 +10,8 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { InvoiceState } from './state/invoice';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { InvoiceState } from './state/invoice';
   imports: [
     BrowserModule,
     SharedModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     NgxsModule.forRoot([InvoiceState]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot()

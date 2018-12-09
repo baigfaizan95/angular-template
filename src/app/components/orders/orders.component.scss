@@ -1,14 +1,41 @@
 @import 'common/index';  
 
 .invoice {
-  margin-top: 3rem;
-  &__item {
+  margin-top: 1.4rem;
+  &__wrapper {
     padding: 1rem;
     margin: 1rem;
     cursor: pointer;
     box-shadow: $box-shadow-sm;
     &:hover{
       color: $primary;
+    }
+  }
+  &__item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+.no-data__wrapper {
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .no-data__wrapper {
+    img {
+      height: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .invoice {
+    &__wrapper{
+      padding: 0.5rem;
+      margin: 1rem 0;
     }
   }
 }
