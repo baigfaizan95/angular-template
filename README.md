@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.2.
 
-## Tools / 3rd Party Component Used
+## Tools / 3rd Party Components Used
 
 * Bootstrap 4 -> Grid and Layout
 * Flatpickr -> Date Picker
