@@ -21,7 +21,6 @@ export class AppComponent {
       };
       this.store.dispatch(new AddInvoice({...details})).subscribe(() => {
         if (invoiceId) {
-          console.log('invoice');
           this.store.dispatch(new SelectInvoice({id: invoiceId}));
         }
       });

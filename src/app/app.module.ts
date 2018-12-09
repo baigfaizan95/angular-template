@@ -7,8 +7,6 @@ import { SharedModule } from './shared/shared.module';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SingleOrderComponent } from './components/single-order/single-order.component';
 import { NgxsModule } from '@ngxs/store';
-import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
-import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { InvoiceState } from './state/invoice';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,8 +28,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       positionClass: 'toast-bottom-center'
     }),
     NgxsModule.forRoot([InvoiceState]),
-    NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsLoggerPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

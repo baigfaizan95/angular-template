@@ -1,7 +1,7 @@
 <div class="form">
   <form class="form__wrapper" [formGroup]="searchForm">
     <div class="form__search">
-      <ng-select (change)="onSelectBlur('customerId')" formControlName="customerId" placeholder="Customer">
+      <ng-select (change)="onSelectChange('customerId')" formControlName="customerId" placeholder="Customer">
         <ng-option *ngFor="let cust of customerList" [value]="cust">{{
           cust.name
         }}</ng-option>

@@ -11,6 +11,9 @@
     padding: 2rem;
     display: flex;
     flex-direction: column;
+    div:first-child {
+      flex: 1;
+    }
   }
   &__invoice {
     background-color: lighten($black, 60%);

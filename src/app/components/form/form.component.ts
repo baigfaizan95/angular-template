@@ -38,7 +38,7 @@ export class FormComponent implements OnInit, AfterViewInit {
     private elem: ElementRef
   ) { }
 
-  onSelectBlur(name) {
+  onSelectChange(name) {
     const data = this.getData(name);
     if (data) {
       localStorage.setItem(name, this.getData(name).id);
