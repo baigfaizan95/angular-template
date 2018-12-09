@@ -2,9 +2,9 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { InvoiceObj } from '../objects/invoice';
 import { AddInvoice, SelectInvoice, ResetInvoice } from '../actions/invoice.actions';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-
+import { of } from 'rxjs';
 export interface InvoiceStateObj {
   invoice: InvoiceObj[];
   selectedInvoice: InvoiceObj;
@@ -65,6 +65,7 @@ export class InvoiceState {
           invoice
         });
       }),
+      catchError(error => of(alert('Network Error')))
     );
   }
 }
