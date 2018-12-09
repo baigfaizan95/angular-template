@@ -1,0 +1,92 @@
+/***********************ng-select********************/
+.ng-select {
+  &.ng-select-focused > .ng-select-container {
+    &:after {
+      border-color: $primary !important;
+    }
+    .ng-arrow {
+      color: $primary !important;
+    }
+  }
+  &.ng-select-focused:not(.ng-select-opened) {
+    & > .ng-select-container {
+      border-color: $primary !important;
+    }
+  }
+  .ng-option {
+    border-radius: 5px !important;
+    margin: 5px !important;
+  }
+  .ng-option-selected {
+    color: $white !important;
+    background-color: $primary !important;
+    box-shadow: $box-shadow-sm !important;
+  }
+  .ng-option-marked:not(.ng-option-selected) {
+    background-color: lighten($secondary, 30%) !important;
+  }
+  &.ng-select-multiple {
+    .ng-value-icon {
+      border-right: 1px solid $white !important;
+      &:hover {
+        background-color: darken($primary, 10%) !important;
+        border-top-left-radius: 5px !important;
+        border-bottom-left-radius: 5px !important;
+      }
+    }
+    .ng-value {
+      font-size: 1rem !important;
+      background-color: $primary !important;
+      color: $white !important;
+      box-shadow: $box-shadow-sm;
+      border-radius: 5px !important;
+      border: none !important;
+      // font-weight: 600;
+    }
+  }
+}
+
+/***** flatpicker ******/
+.flatpickr-calendar {
+  .flatpickr-months {
+    padding: 0.5rem;
+    .flatpickr-month {
+      height: 30px;
+    }
+    .flatpickr-prev-month,
+    .flatpickr-next-month {
+      margin: 0.5rem;
+      &:hover {
+        svg {
+          fill: $primary;
+        }
+      }
+    }
+  }
+  .flatpickr-day {
+    &.selected,
+    &.selected:hover,
+    &.endRange,
+    &.startRange {
+      background: $primary !important;
+      border: none;
+      box-shadow: $box-shadow-sm !important;
+    }
+    &.today {
+      border: 2px solid rgba($color: $primary, $alpha: 0.5);
+      box-shadow: $box-shadow-sm;
+    }
+    &.today.inRange {
+      background-color: $secondary;
+    }
+  }
+}
+.flatpickr-input {
+  &:hover {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  }
+  background: $white !important;
+  border: none;
+  color: $font-color;
+  border-bottom: 1px solid $font-color;
+}
