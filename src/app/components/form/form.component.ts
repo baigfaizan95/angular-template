@@ -104,10 +104,8 @@ export class FormComponent implements OnInit, AfterViewInit {
   reset() {
     localStorage.clear();
     this.searchForm.reset();
-    const startDate = this.renderer.selectRootElement('.flatpickr-mobile');
-    const endDate = this.renderer.selectRootElement('.flatpickr-mobile');
-    this.renderer.setProperty(startDate, 'value', '');
-    this.renderer.setProperty(endDate, 'value', '');
+    const flatPickrMobile = this.renderer.selectRootElement('.flatpickr-mobile');
+    this.renderer.setProperty(flatPickrMobile, 'value', '');
     this.store.dispatch(new ResetInvoice());
   }
 }
