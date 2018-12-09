@@ -15,13 +15,13 @@ import { ToastrService } from 'ngx-toastr';
 export class FormComponent implements OnInit, AfterViewInit {
 
   customerIdLocal = localStorage.getItem('customerId');
-  startDateLocal: Date;
-  endDateLocal: Date;
+  startDateLocal: string;
+  endDateLocal: string;
 
   searchForm = this.fb.group({
     customerId: [this.customerIdLocal, [Validators.required]],
-    startDate: [this.startDateLocal ? new Date(this.startDateLocal) : ''],
-    endDate: [this.endDateLocal ? new Date(this.startDateLocal) : '']
+    startDate: [localStorage.getItem('startDate')],
+    endDate: [localStorage.getItem('endDate')]
   });
 
   customerList: Array<CustomerObj> = [];
@@ -34,18 +34,7 @@ export class FormComponent implements OnInit, AfterViewInit {
     private store: Store,
     private commonService: CommonService,
     private toastr: ToastrService
-  ) {
-    this.startDateLocal = localStorage.getItem('startDate') ? new Date(localStorage.getItem('startDate')) : null;
-    this.endDateLocal = localStorage.getItem('endDate') ? new Date(localStorage.getItem('endDate')) : null;
-  }
-
-  onBlurMethod(event) {
-    const name = event.target.name;
-    const data = this.getData(name);
-    if (data) {
-      localStorage.setItem(name, this.getData(name));
-    }
-  }
+  ) { }
 
   onSelectBlur(name) {
     const data = this.getData(name);
@@ -66,8 +55,16 @@ export class FormComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    flatpickr(this.startDate.nativeElement);
-    flatpickr(this.endDate.nativeElement);
+    flatpickr(this.startDate.nativeElement, {
+      onChange: function(_, dateStr) {
+        localStorage.setItem('startDate', dateStr);
+    }
+    });
+    flatpickr(this.endDate.nativeElement, {
+      onChange: function(_, dateStr) {
+        localStorage.setItem('endDate', dateStr);
+    }
+    });
   }
 
   getData(value: string) {
@@ -100,9 +97,7 @@ export class FormComponent implements OnInit, AfterViewInit {
   }
 
   showError(message: string) {
-    this.toastr.error(message, 'Form Error!', {
-      positionClass: 'toast-bottom-center'
-    });
+    this.toastr.error(message, 'Form Error!');
   }
 
   reset() {
